@@ -1,0 +1,35 @@
+import { loadRoute } from "./router.js";
+import { validarFormulario } from "./form.js";
+import { mostrarMensagem } from "./dom.js";
+import { salvarDados, carregarDados } from "./storage.js";
+
+// Inicializa rota padrão
+loadRoute("home");
+
+// Botões do menu
+document.querySelectorAll("nav button").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const route = btn.dataset.route;
+        loadRoute(route).then(() => {
+            if (route === "cadastro") {
+                const form = document.getElementById("formCadastro");
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    if (validarFormulario(form.elements)) {
+                        const dados = {
+                            nome: form.nome.value,
+                            email: form.email.value
+                        };
+                        const lista = carregarDados("usuarios");
+                        lista.push(dados);
+                        salvarDados("usuarios", lista);
+                        mostrarMensagem("Cadastro realizado com sucesso!", "success");
+                        form.reset();
+                    } else {
+                        mostrarMensagem("Erro no formulário!", "error");
+                    }
+                });
+            }
+        });
+    });
+});
