@@ -1,0 +1,19 @@
+export function validarEmail(email) {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+
+export function validarFormulario(campos) {
+    for (let campo of campos) {
+        if (!campo.value) {
+            alert(`O campo ${campo.name} está vazio!`);
+            return false;
+        }
+    }
+    const email = campos.email;
+    if (email && !validarEmail(email.value)) {
+        alert("Email inválido!");
+        return false;
+    }
+    return true;
+}
