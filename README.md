@@ -1,9 +1,5 @@
 # Experiencia-Pratica-III 
 
-Este repositório contém os arquivos e recursos utilizados na atividade **Experiência Prática III**.
-
----
-
 ## 📂 Estrutura do Repositório
 
 ### 📁 Pasta: `Experiencia-Pratica-III`
